@@ -1,4 +1,9 @@
 <?php
+require '../vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 include('./simple_html_dom.php');
 
 interface iRadovi {
@@ -21,12 +26,7 @@ class DiplomskiRadovi implements iRadovi {
     }
 
     public function save() {
-        $servername = "localhost";
-        $username = "root";
-        $password = "password123";
-        $dbname = "radovi";
-
-        $conn = new mysqli($servername, $username, $password, $dbname);
+        $conn = new mysqli($_ENV['DB_HOST'], $_ENV['DB_USER'], $_ENV['DB_PASS'], $_ENV['DB_NAME']);
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
@@ -48,12 +48,7 @@ class DiplomskiRadovi implements iRadovi {
     }
 
     public function read() {
-        $servername = "localhost";
-        $username = "root";
-        $password = "password123";
-        $dbname = "radovi";
-    
-        $conn = new mysqli($servername, $username, $password, $dbname);
+        $conn = new mysqli($_ENV['DB_HOST'], $_ENV['DB_USER'], $_ENV['DB_PASS'], $_ENV['DB_NAME']);
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
@@ -76,34 +71,34 @@ class DiplomskiRadovi implements iRadovi {
     }
 }
 
-for ($page = 2; $page <= 6; $page++) {
-    $url = "https://stup.ferit.hr/index.php/zavrsni-radovi/page/{$page}/";
-    $html = file_get_html($url);
+// for ($page = 2; $page <= 6; $page++) {
+//     $url = "https://stup.ferit.hr/index.php/zavrsni-radovi/page/{$page}/";
+//     $html = file_get_html($url);
 
-    foreach($html->find('article') as $article) {
-        $img = $article->find('img', 0);
-        $link = $article->find('h2.entry-title a', 0);
+//     foreach($html->find('article') as $article) {
+//         $img = $article->find('img', 0);
+//         $link = $article->find('h2.entry-title a', 0);
         
-        if ($img && $link) {
-            $oib_tvrtke = preg_replace('/[^0-9]/', '', $img->src);
-            $naziv_rada = $link->plaintext;
-            $link_rada = $link->href;
+//         if ($img && $link) {
+//             $oib_tvrtke = preg_replace('/[^0-9]/', '', $img->src);
+//             $naziv_rada = $link->plaintext;
+//             $link_rada = $link->href;
             
-            $html_rada = file_get_html($link_rada);
-            $tekst_rada = $html_rada->find('.post-content', 0)->plaintext;
+//             $html_rada = file_get_html($link_rada);
+//             $tekst_rada = $html_rada->find('.post-content', 0)->plaintext;
 
-            $rad = new DiplomskiRadovi();
-            $rad->create([
-                'naziv_rada' => $naziv_rada,
-                'tekst_rada' => $tekst_rada,
-                'link_rada' => $link_rada,
-                'oib_tvrtke' => $oib_tvrtke
-            ]);
+//             $rad = new DiplomskiRadovi();
+//             $rad->create([
+//                 'naziv_rada' => $naziv_rada,
+//                 'tekst_rada' => $tekst_rada,
+//                 'link_rada' => $link_rada,
+//                 'oib_tvrtke' => $oib_tvrtke
+//             ]);
 
-            $rad->save();
-        }
-    }
-}
+//             $rad->save();
+//         }
+//     }
+// }
 
 $radovi = new DiplomskiRadovi();
 $radovi->read();
