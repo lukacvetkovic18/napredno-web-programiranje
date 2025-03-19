@@ -1,0 +1,8 @@
+INSERT INTO nwp (id, atribut1, atribut2, atribut3)
+VALUES ('1', 'vrijednost1', 'vrijednost2', 'vrijednost3')";
+INSERT INTO nwp (id, atribut1, atribut2, atribut3)
+VALUES ('2', 'test1', 'test2', 'test3')";
+INSERT INTO nwp (id, atribut1, atribut2, atribut3)
+VALUES ('3', 'abc', 'def', 'ghi')";
+INSERT INTO nwp (id, atribut1, atribut2, atribut3)
+VALUES ('4', 'random1', 'random2', 'random3')";

@@ -1,5 +1,7 @@
+.DS_Store
 vendor
 composer.json
 composer.lock
 
 LV1/.env
+LV2/.env
