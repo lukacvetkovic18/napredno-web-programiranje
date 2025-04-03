@@ -1,0 +1,130 @@
+/* SHOW */
+
+.show-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 50px;
+    font-size: 20px;
+}
+
+input, textarea, select {
+    font-size: 20px;
+}
+
+.show-container .header {
+    display: flex;
+}
+
+.show-container .header h2 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.show-container a, .show-container button {
+    background-color: #445493;
+    border-radius: 8px;
+    padding: 5px 10px;
+    color: #ccc;
+    margin-left: 50px;
+}
+
+.show-container a:hover, .show-container button:hover {
+    background-color: #2b345c;
+    cursor: pointer;
+}
+
+.show-container .empty-message {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.show-container .my-projects-list {
+    margin: 20px;
+}
+
+.show-container .my-projects-list .list-group-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    font-weight: bold;
+    border-bottom: 1px solid #445493;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.show-container .my-projects-list .list-group-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    padding: 20px 0;
+    text-align: center;
+    align-items: center;
+}
+.show-container .my-projects-list .list-group-item:nth-child(even) {
+    background-color: #cacaca;
+}
+
+.show-container .my-projects-list .list-group-item a,
+.show-container .my-projects-list .list-group-item button {
+    width: 100px;
+}
+
+.show-container .my-projects-list .form-group {
+    align-items: center;
+    margin: 0;
+}
+
+.show-container .my-projects-list .form-group textarea{
+    font-size: 20px;
+}
+
+/* CREATE/EDIT */
+
+.edit-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 50px;
+    font-size: 20px;
+    width: 100%;
+}
+
+.edit-container h2 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.edit-container .form-group {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.edit-container .form-group input{
+    font-size: 20px;
+}
+
+.edit-container .form-group select{
+    font-size: 20px;
+}
+
+.edit-container button {
+    background-color: #445493;
+    border-radius: 8px;
+    padding: 5px 10px;
+    color: #ccc;
+}
+
+.edit-container button:hover {
+    background-color: #2b345c;
+    cursor: pointer;
+}
+
+.edit-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
