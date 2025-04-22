@@ -1,0 +1,39 @@
+extends ../layout
+
+block content
+  .container.mt-4
+    .d-flex.justify-content-between.align-items-center.mb-4
+      h1.mb-0.text-center.flex-grow-1= project.name
+      a.btn.btn-outline-secondary.ms-3(href='/projects') Back
+
+    .card.shadow.mb-4
+      .card-body
+        p.lead.mb-2 Description: #{project.description}
+        p.lead.mb-2 Price: #{project.price}
+        p.lead.mb-2 Tasks: #{project.tasks.join(', ')}
+        p.lead.mb-2 Start Date: #{project.startDate.toISOString().substring(0, 10)}
+        p.lead.mb-2 End Date: #{project.endDate.toISOString().substring(0, 10)}
+    
+    h2.text-center.mb-3 Team Members
+    ul.list-group.mb-4
+      if project.teamMembers.length > 0
+        each member in project.teamMembers
+          li.list-group-item #{member.name} - #{member.role}
+      else
+        li.list-group-item.text-muted No team members added yet.
+
+    h3.text-center.mb-3 Add New Team Member
+    form(action='/projects/' + project._id + '/team', method='POST', class='mb-4')
+      .mb-3
+        label(for='name', class='form-label') Name:
+        input(type='text', name='name', required, class='form-control')
+      .mb-3
+        label(for='role', class='form-label') Role:
+        input(type='text', name='role', required, class='form-control')
+      button(type='submit', class='btn btn-success') Add Member
+
+    .d-flex.justify-content-between.mt-4
+      a.btn.btn-warning(href='/projects/' + project._id + '/edit') Edit Project
+      form(action='/projects/' + project._id, method='POST', class='d-inline')
+        input(type="hidden", name="_method", value="DELETE")
+        button(type='submit', class='btn btn-danger') Delete Project
