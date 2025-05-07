@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+  .container.mt-4
+    h1.text-center.mb-4 My Member Projects
+    ul.list-group
+      each project in projects
+        li.list-group-item
+          h5= project.name
+          p Leader: #{project.leader.username}
+          form(action='/projects/' + project._id + '/tasks?_method=PUT', method='POST')
+            .mb-3
+              label.form-label Tasks (comma-separated):
+              input.form-control(
+                type='text', 
+                name='tasks', 
+                value=project.tasks.join(', ')
+              )
+            button.btn.btn-success(type='submit') Update Tasks

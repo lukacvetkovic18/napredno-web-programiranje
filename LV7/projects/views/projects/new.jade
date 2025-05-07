@@ -1,0 +1,27 @@
+extends ../layout
+
+block content
+  .container.mt-5
+    h1.text-center.mb-4= title
+    form(action='/projects', method='POST', class='card p-4 shadow')
+      .mb-3
+        label(for='name', class='form-label') Project Name:
+        input(type='text', name='name', required, class='form-control')
+      .mb-3
+        label(for='description', class='form-label') Description:
+        textarea(name='description', class='form-control')
+      .mb-3
+        label(for='price', class='form-label') Price:
+        input(type='number', name='price', class='form-control')
+      .mb-3
+        label(for='tasks', class='form-label') Tasks (comma-separated):
+        input(type='text', name='tasks', class='form-control')
+      .mb-3
+        label(for='startDate', class='form-label') Start Date:
+        input(type='date', name='startDate', class='form-control')
+      .mb-3
+        label(for='endDate', class='form-label') End Date:
+        input(type='date', name='endDate', class='form-control')
+      .d-flex.justify-content-between
+        button(type='submit', class='btn btn-success mt-3') Add Project
+        a.btn.btn-secondary.mt-3(href='/projects') Cancel

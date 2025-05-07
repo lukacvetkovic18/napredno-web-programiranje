@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  .container.mt-5
+    h1.text-center.mb-4 Registracija
+    if error
+      .alert.alert-danger= error
+    form(action='/register', method='POST', class='card p-4 shadow mx-auto', style='max-width: 400px;')
+      .mb-3
+        label(for='username', class='form-label') Korisničko ime
+        input(type='text', name='username', id='username', required, class='form-control')
+      .mb-3
+        label(for='password', class='form-label') Lozinka
+        input(type='password', name='password', id='password', required, class='form-control')
+      button(type='submit', class='btn btn-primary w-100') Registriraj se
+    p.text-center.mt-3
+      | Već imate račun? 
+      a(href='/login') Prijavite se ovdje

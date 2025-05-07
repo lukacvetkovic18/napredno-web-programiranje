@@ -1,0 +1,32 @@
+extends ../layout
+
+block content
+  .container.mt-5
+    h1.text-center.mb-4= title
+    form(action='/projects/' + project._id, method='POST', class='card p-4 shadow')
+      input(type="hidden", name="_method", value="PUT")
+      .mb-3
+        label(for='name', class='form-label') Project Name:
+        input(type='text', name='name', value=project.name, required, class='form-control')
+      .mb-3
+        label(for='description', class='form-label') Description:
+        textarea(name='description', class='form-control', required)= project.description
+      .mb-3
+        label(for='price', class='form-label') Price:
+        input(type='number', name='price', value=project.price, class='form-control')
+      .mb-3
+        label(for='tasks', class='form-label') Tasks (comma-separated):
+        input(type='text', name='tasks', value=project.tasks.join(', '), class='form-control')
+      .mb-3
+        label(for='startDate', class='form-label') Start Date:
+        input(type='date', name='startDate', value=project.startDate.toISOString().substring(0, 10), class='form-control')
+      .mb-3
+        label(for='endDate', class='form-label') End Date:
+        input(type='date', name='endDate', value=project.endDate.toISOString().substring(0, 10), class='form-control')
+      .mb-3
+        .form-check
+          input.form-check-input(type='checkbox', name='archived', id='archived', checked=project.archived)
+          label.form-check-label(for='archived') Archived
+      .d-flex.justify-content-between
+        button(type='submit', class='btn btn-primary mt-3') Update Project
+        a.btn.btn-secondary.mt-3(href='/projects') Cancel

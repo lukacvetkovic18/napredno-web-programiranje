@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+  .container.mt-4
+    h1.text-center.mb-4 My Leading Projects
+    ul.list-group
+      each project in projects
+        li.list-group-item.d-flex.justify-content-between.align-items-center
+          span #{project.name}
+          div
+            a.btn.btn-primary.btn-sm(href='/projects/' + project._id) View
+            a.btn.btn-warning.btn-sm(href='/projects/' + project._id + '/edit') Edit

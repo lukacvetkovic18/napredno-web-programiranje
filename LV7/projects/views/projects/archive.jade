@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+  .container.mt-5
+    h1.text-center.mb-4 Project Archive
+    ul.list-group
+      if projects.length
+        each project in projects
+          li.list-group-item
+            h5.mb-1= project.name
+            p.mb-0
+              | Leader: #{project.leader.username}
+              br
+              | Members: 
+              each member in project.teamMembers
+                span.badge.bg-secondary.mx-1= member.user.username
+            a.btn.btn-outline-primary.btn-sm.mt-2(href='/projects/' + project._id) View
+      else
+        .alert.alert-info.mt-4 No archived projects found.
