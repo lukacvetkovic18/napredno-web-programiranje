@@ -65,7 +65,7 @@ composer install
 npm install && npm run build
 cp .env.example .env
 php artisan key:generate
-php artisan migrate
+php artisan migrate --seed   # LV5 seeds an admin account (ADMIN_EMAIL / ADMIN_PASSWORD in .env)
 php artisan serve
 ```
 
